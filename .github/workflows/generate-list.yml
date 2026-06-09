@@ -1,6 +1,6 @@
 name: Generate Posts List
 
-on:　
+on:　　
   push:
     paths:
       - 'posts/**'
