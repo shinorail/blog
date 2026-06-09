@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>篠ノ井乗務区ブログ</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+    <div class="pr-header">
+        <span id="pr-news-text">お知らせを読み込み中...</span>
+    </div>
+
+    <header class="site-header">
+        <h1><a href="index.html">篠ノ井乗務区ブログ</a></h1>
+        
+        <div class="header-controls">
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="テーマ切り替え">🌙</button>
+
+            <button class="menu-trigger" id="menu-trigger" aria-label="メニュー">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <nav class="nav-menu" id="nav-menu">
+            <ul>
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="?page=help">ヘルプ</a></li>
+                <li><a href="?page=terms">利用規約</a></li>
+                <li><a href="?page=privacy">プライバシーポリシー</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <aside class="sidebar">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="記事を検索...">
+            </div>
+            <h3>記事一覧</h3>
+            <ul id="posts-list"></ul>
+        </aside>
+
+        <main class="main-content">
+            <div id="read-time-badge" class="read-time-badge" style="display: none;"></div>
+            
+            <article id="content">
+                <p>読み込み中...</p>
+            </article>
+
+            <div id="share-buttons" class="share-buttons" style="display: none;">
+                <h4>この記事をシェアする</h4>
+                <a id="share-x" class="btn-share x-color" href="#" target="_blank" rel="noopener noreferrer">X (旧Twitter)</a>
+                <a id="share-line" class="btn-share line-color" href="#" target="_blank" rel="noopener noreferrer">LINE</a>
+            </div>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 篠ノ井乗務区</p>
+        <div class="footer-links">
+            <a href="?page=help">ヘルプ</a> | 
+            <a href="?page=terms">利用規約</a> | 
+            <a href="?page=privacy">プライバシーポリシー</a>
+        </div>
+    </footer>
+
+    <script src="js/blog.js"></script>
+</body>
+</html>
