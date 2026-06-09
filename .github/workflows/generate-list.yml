@@ -1,0 +1,31 @@
+name: Generate Posts List
+
+on:
+  push:
+    paths:
+      - 'posts/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Generate JSON List
+        run: |
+          echo "[" > posts-list.json
+          first=true
+          for file in $(ls -r posts/*.md 2>/dev/null); do
+            if [ "$first" = true ]; then first=false; else echo "," >> posts-list.json; fi
+            filename=$(basename "$file" .md)
+            echo "  \"$filename\"" >> posts-list.json
+          done
+          echo "]" >> posts-list.json
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add posts-list.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update posts list [skip ci]" && git push)
