@@ -1,0 +1,273 @@
+/* ==========================================================================
+   1. 基本スタイル ＆ 変数設定（ライトモード基準）
+   ========================================================================== */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --header-bg: #2c3e50;
+    --header-text: #ffffff;
+    --sidebar-bg: #f8f9fa;
+    --border-color: #e2e8f0;
+    --accent-color: #f39c12;
+    --link-color: #3498db;
+}
+
+/* 🌗 ダークモード時の上書き設定 */
+body.dark-mode {
+    --bg-color: #1a202c;
+    --text-color: #e2e8f0;
+    --header-bg: #0f172a;
+    --sidebar-bg: #2d3748;
+    --border-color: #4a5568;
+    --link-color: #63b3ed;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ==========================================================================
+   2. パーツ別スタイル
+   ========================================================================== */
+/* 📢 PRヘッダー */
+.pr-header {
+    background-color: var(--accent-color);
+    color: white;
+    text-align: center;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+/* 🏢 ヘッダー */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    position: relative;
+}
+.site-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+.site-header h1 a {
+    color: var(--header-text);
+    text-decoration: none;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* 🌗 ダークモードボタン */
+.theme-toggle-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--header-text);
+}
+
+/* 🧭 ナビゲーションメニュー (PC) */
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 10px;
+}
+.nav-menu a {
+    color: var(--header-text);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+.nav-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 🍔 ハンバーガーボタン */
+.menu-trigger {
+    display: none;
+    background: none;
+    border: none;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+}
+.menu-trigger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--header-text);
+    position: absolute;
+    transition: all 0.3s;
+}
+.menu-trigger span:nth-child(1) { top: 0; }
+.menu-trigger span:nth-child(2) { top: 10px; }
+.menu-trigger span:nth-child(3) { top: 20px; }
+
+.menu-trigger.active span:nth-child(1) { transform: translateY(10px) rotate(-45deg); }
+.menu-trigger.active span:nth-child(2) { opacity: 0; }
+.menu-trigger.active span:nth-child(3) { transform: translateY(-10px) rotate(45deg); }
+
+/* ==========================================================================
+   3. レイアウト構造（PC横並び、スマホ縦並び）
+   ========================================================================== */
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    gap: 30px;
+}
+
+/* 🔍 サイドバー ＆ 検索 */
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background-color: var(--sidebar-bg);
+    padding: 20px;
+    border-radius: 8px;
+    height: fit-content;
+    border: 1px solid var(--border-color);
+}
+.search-box input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+.sidebar a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* 📝 メインコンテンツ */
+.main-content {
+    flex: 1;
+    min-width: 0; /* レスポンシブの崩れ防止 */
+}
+
+/* 🕒 読了バッジ */
+.read-time-badge {
+    display: inline-block;
+    background-color: var(--sidebar-bg);
+    border: 1px solid var(--border-color);
+    padding: 4px 10px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+/* 🔗 SNSシェアボタン */
+.share-buttons {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+.btn-share {
+    display: inline-block;
+    padding: 8px 16px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+.x-color { background-color: #111111; }
+.line-color { background-color: #06c755; }
+
+/* 🦶 フッター */
+.site-footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    margin-top: 60px;
+}
+.footer-links {
+    margin-top: 10px;
+}
+.footer-links a {
+    color: var(--header-text);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+/* ==========================================================================
+   4. レスポンシブ対応 (スマートフォン画面)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .site-header {
+        flex-wrap: wrap;
+    }
+    .menu-trigger {
+        display: block;
+    }
+    .nav-menu {
+        display: none;
+        width: 100%;
+        margin-top: 15px;
+    }
+    .nav-menu.active {
+        display: block;
+    }
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 0;
+    }
+    .nav-menu a {
+        display: block;
+        padding: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0;
+    }
+
+    .container {
+        flex-direction: column;
+        margin: 15px auto;
+        gap: 20px;
+    }
+    .sidebar {
+        width: 100%;
+    }
+}
